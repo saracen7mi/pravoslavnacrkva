@@ -19,129 +19,105 @@
 </head>
 <body>
     <audio id="audio-bosnian">
-        <source src="https://cdn.glitch.global/cc9fae66-0efa-4277-92e1-c0a0bd408e9e/ttsmaker-file-2025-3-8-16-0-20.mp3?v=1741449146963" type="audio/mpeg">
+        <source src="https://raw.githubusercontent.com/saracen7mi/pravoslavnacrkva/main/pravoslavnabosanski.mp3" type="audio/mpeg">
     </audio>
     <audio id="audio-english">
-        <source src="https://cdn.glitch.global/cc9fae66-0efa-4277-92e1-c0a0bd408e9e/ttsmaker-file-2025-3-8-16-1-39.mp3?v=1741449183825" type="audio/mpeg">
+        <source src="https://raw.githubusercontent.com/saracen7mi/pravoslavnacrkva/main/pravoslavnacrkvaengleski.mp3" type="audio/mpeg">
     </audio>
     <audio id="audio-german">
-        <source src="https://cdn.glitch.global/cc9fae66-0efa-4277-92e1-c0a0bd408e9e/ttsmaker-file-2025-3-8-16-3-13.mp3?v=1741449217839" type="audio/mpeg">
+        <source src="https://raw.githubusercontent.com/saracen7mi/pravoslavnacrkva/main/pravoslavnacrkvanjemacka.mp3" type="audio/mpeg">
     </audio>
     <audio id="audio-italian">
-        <source src="https://cdn.glitch.global/cc9fae66-0efa-4277-92e1-c0a0bd408e9e/ttsmaker-file-2025-3-8-16-4-36.mp3?v=1741449257840" type="audio/mpeg">
+        <source src="https://raw.githubusercontent.com/saracen7mi/pravoslavnacrkva/main/pravoslavnacrkvaitalijanska.mp3" type="audio/mpeg">
     </audio>
     <audio id="audio-turkish">
-        <source src="https://cdn.glitch.global/cc9fae66-0efa-4277-92e1-c0a0bd408e9e/ttsmaker-file-2025-3-8-16-6-13.mp3?v=1741449291010" type="audio/mpeg">
+        <source src="https://raw.githubusercontent.com/saracen7mi/pravoslavnacrkva/main/pravoslavnacrkvaturski.mp3" type="audio/mpeg">
     </audio>
-
-  
     <a-scene embedded arjs="sourceType: webcam; trackingMethod: best; debugUIEnabled: false;">
         <a-plane color="#008000" height="3.5" width="6.5" position="0 0.5 -5" opacity="0.9"></a-plane>
-
-       <a-entity 
-            gltf-model="https://cdn.glitch.global/8eb7e3ac-9cb0-4df9-ac1c-e8789b01c00f/tripo_pbr_model_7eb084e0-462e-465a-bcde-09800ef42f1a%20(2).glb?v=1741445307057" 
+        <a-entity 
+            gltf-model="https://raw.githubusercontent.com/saracen7mi/pravoslavnacrkva/main/grbOpstine.glb" 
             position="-2 1 -5" 
             scale="1 1 1" 
             rotation="0 240 0" 
             animation="property: rotation; to: 0 360 0; loop: true; dur: 5000">
         </a-entity>
-
-      <a-entity 
-    gltf-model="https://cdn.glitch.global/cc9fae66-0efa-4277-92e1-c0a0bd408e9e/tripo_pbr_model_5e55f81c-2328-4432-8005-56dabb6672ca.glb?v=1741464277550" 
-    position="2 1 -5" 
-    scale="1 1 1" 
-    rotation="0 240 0" 
-    animation="property: rotation; to: 0 360 0; loop: true; dur: 5000">
-</a-entity>
-      
-      
-      
-  
-
-<a-entity id="eng-button" geometry="primitive: plane; height: 0.5; width: 1.5"
-          material="color: red" position="-2.5 2 -4.9"
-          text="value: ENG; color: white; align: center; width: 3;">
-</a-entity>
-
-<a-entity id="deu-button" geometry="primitive: plane; height: 0.5; width: 1.5"
-          material="color: yellow" position="-1 2 -4.9"
-          text="value: DEU; color: black; align: center; width: 3;">
-</a-entity>
-
-<a-entity id="ita-button" geometry="primitive: plane; height: 0.5; width: 1.5"
-          material="color: blue" position="0.5 2 -4.9"
-          text="value: ITA; color: white; align: center; width: 3;">
-</a-entity>
-
-<a-entity id="tur-button" geometry="primitive: plane; height: 0.5; width: 1.5"
-          material="color: brown" position="2 2 -4.9"
-          text="value: TUR; color: white; align: center; width: 3;">
-</a-entity>
-
-
+        <a-entity 
+            gltf-model="https://raw.githubusercontent.com/saracen7mi/pravoslavnacrkva/main/grbOpstine.glb" 
+            position="2 1 -5" 
+            scale="1 1 1" 
+            rotation="0 240 0" 
+            animation="property: rotation; to: 0 360 0; loop: true; dur: 5000">
+        </a-entity>
+        <a-entity id="eng-button" geometry="primitive: plane; height: 0.5; width: 1.5"
+                  material="color: red" position="-2.5 2 -4.9"
+                  text="value: ENG; color: white; align: center; width: 3;">
+        </a-entity>
+        <a-entity id="deu-button" geometry="primitive: plane; height: 0.5; width: 1.5"
+                  material="color: yellow" position="-1 2 -4.9"
+                  text="value: DEU; color: black; align: center; width: 3;">
+        </a-entity>
+        <a-entity id="ita-button" geometry="primitive: plane; height: 0.5; width: 1.5"
+                  material="color: blue" position="0.5 2 -4.9"
+                  text="value: ITA; color: white; align: center; width: 3;">
+        </a-entity>
+        <a-entity id="tur-button" geometry="primitive: plane; height: 0.5; width: 1.5"
+                  material="color: brown" position="2 2 -4.9"
+                  text="value: TUR; color: white; align: center; width: 3;">
+        </a-entity>
         <a-entity position="0 0.8 -4.9">
             <a-text value=" Crkva Svetog velikomucenika Dimitrija u Kladnju predstavlja znacajan vjerski, kulturno-istorijski spomenik pravoslavne zajednice ovog kraja. Sagradjena 1922. godine, crkva je brzo postala duhovni centar pravoslavnih vjernika u Kladnju i okolini. II. Za vrijeme Drugog svjetskog rata, 1943. godine, Kladanj je bio meta zracnog napada, crkva je bila tesko ostecena i potpuno izgorjela. Crkva, koja dugo nije sluzila za bogosluzenje, obnovljena je tek 1986. godine, a crkva je svecano otvorena i presla na upravu Eparhije zvornicko-tuzlanske. Danas se u Vitaljskom okrugu nalazi crkva Svetog velikomucenika Dimitrija, koja nastavlja da sluzi svojoj vjerskoj namjeni okupljajuci pravoslavne vjernike i svjedoceci istorijsko i duhovno naslijedje pravoslavne zajednice u Kladnju. "
                     color="#FFFF00" width="5.5" wrap-count="50" align="center" scale="0.5 0.5 0.5">
             </a-text>
         </a-entity>
-
-        <a-entity 
-            gltf-model="" 
-            position="-2 1 -5" 
-            scale="0.5 0.5 0.5" 
-            rotation="0 240 0" 
-            animation="property: rotation; to: 0 360 0; loop: true; dur: 5000">
-        </a-entity>
-
-        <a-entity 
-            gltf-model="" 
-            position="2 1 -5" 
-            scale="0.5 0.5 0.5" 
-            rotation="0 240 0" 
-            animation="property: rotation; to: 0 360 0; loop: true; dur: 5000">
-        </a-entity>
-
         <a-entity camera look-controls position="0 0 0" fov="85">
             <a-cursor color="#FF0000" radius="0.05"></a-cursor>
         </a-entity>
     </a-scene>
-
     <script>
         let bosnianAudio = document.getElementById('audio-bosnian');
         let englishAudio = document.getElementById('audio-english');
         let germanAudio = document.getElementById('audio-german');
         let italianAudio = document.getElementById('audio-italian');
         let turkishAudio = document.getElementById('audio-turkish');
-
         function stopAllAudio() {
             [bosnianAudio, englishAudio, germanAudio, italianAudio, turkishAudio].forEach(audio => {
                 audio.pause();
                 audio.currentTime = 0;
             });
         }
-
         function playAudio(audioElement) {
+            if (!audioElement || !audioElement.src) {
+                console.warn('Audio element nije definisan ili nema izvor.');
+                return;
+            }
             stopAllAudio();
-            audioElement.play();
+            audioElement.play().then(() => {
+                console.log('Audio pokrenut:', audioElement.id);
+            }).catch(error => {
+                console.warn('Reprodukcija nije uspjela:', error);
+            });
         }
-
         document.getElementById('eng-button').addEventListener('mouseenter', () => playAudio(englishAudio));
         document.getElementById('deu-button').addEventListener('mouseenter', () => playAudio(germanAudio));
         document.getElementById('ita-button').addEventListener('mouseenter', () => playAudio(italianAudio));
         document.getElementById('tur-button').addEventListener('mouseenter', () => playAudio(turkishAudio));
-
-        // window.addEventListener('load', () => {
-        //     bosnianAudio.play().catch(e => console.log("Audio autoplay blokiran: " + e));
-        // });
-      
-      window.addEventListener('load', () => {
-    document.body.addEventListener('click', () => {
-        if (bosnianAudio.paused) {
-            bosnianAudio.play();
-        }
-    }, { once: true }); // Pokreće se samo jednom
-});
-
+        window.addEventListener('load', () => {
+            document.body.addEventListener('click', () => {
+                if (bosnianAudio.paused) {
+                    playAudio(bosnianAudio);
+                }
+            }, { once: true });
+        });
+        // Dodaj dijagnostiku za modele
+        document.querySelectorAll('a-entity[gltf-model]').forEach(entity => {
+            entity.addEventListener('model-loaded', () => {
+                console.log('Model učitan:', entity.getAttribute('gltf-model'));
+            });
+            entity.addEventListener('model-error', (e) => {
+                console.error('Greška pri učitavanju modela:', e.detail, entity.getAttribute('gltf-model'));
+            });
+        });
     </script>
 </body>
 </html>
