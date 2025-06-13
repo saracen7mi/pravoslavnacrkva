@@ -269,67 +269,21 @@
 
 
 
-
 <!DOCTYPE html>
 <html lang="bs">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Pravoslavna crkva u Kladnju</title>
   <script src="https://aframe.io/releases/1.4.1/aframe.min.js"></script>
   <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar.js"></script>
   <style>
-    body {
-      margin: 0;
-      background-color: #002200;
-      font-family: Arial, sans-serif;
-      color: white;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
-
-    a-scene {
-      width: 100%;
-      height: 75vh;
-      border-bottom: 4px solid #004400;
-    }
-
-    .language-controls {
-      width: 100%;
-      display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-      background-color: #001100;
-      padding: 10px 0;
-      gap: 10px;
-    }
-
-    .lang-button {
-      padding: 10px 15px;
-      font-weight: bold;
-      border-radius: 5px;
-      user-select: none;
-      color: white;
-      font-size: 16px;
-      opacity: 0.95;
-      transition: opacity 0.3s;
-      cursor: pointer;
-      border: none;
-    }
-
-    .lang-button:hover {
-      opacity: 1;
-    }
-
-    #btn-eng { background-color: red; }
-    #btn-deu { background-color: yellow; color: black; }
-    #btn-ita { background-color: blue; }
-    #btn-tur { background-color: brown; }
+    body { margin: 0; overflow: hidden; }
+    a-scene { width: 100%; height: 100vh; }
+    .clickable { cursor: pointer; }
   </style>
 </head>
 <body>
-
   <!-- Audio fajlovi -->
   <audio id="audio-bosnian" preload="auto" src="https://raw.githubusercontent.com/saracen7mi/pravoslavnacrkva/main/pravoslavnabosanski.mp3"></audio>
   <audio id="audio-english" preload="auto" src="https://raw.githubusercontent.com/saracen7mi/pravoslavnacrkva/main/pravoslavnacrkvaengleski.mp3"></audio>
@@ -337,83 +291,85 @@
   <audio id="audio-italian" preload="auto" src="https://raw.githubusercontent.com/saracen7mi/pravoslavnacrkva/main/pravoslavnacrkvaitalijanska.mp3"></audio>
   <audio id="audio-turkish" preload="auto" src="https://raw.githubusercontent.com/saracen7mi/pravoslavnacrkva/main/pravoslavnacrkvaturski.mp3"></audio>
 
-  <!-- A-Frame scena -->
   <a-scene embedded arjs="sourceType: webcam; trackingMethod: best; debugUIEnabled: false;">
-    <a-plane color="#008000" height="3.5" width="6.5" position="0 0.5 -5" opacity="0.9"></a-plane>
+    <!-- Pozadina -->
+    <a-plane color="#006400" height="3.5" width="6.5" position="0 0.5 -5" opacity="0.9"></a-plane>
 
+    <!-- GLTF modeli -->
     <a-entity gltf-model="https://cdn.jsdelivr.net/gh/saracen7mi/pravoslavnacrkva@main/grbOpstine.glb"
               position="-2 1 -5" scale="1 1 1" rotation="0 240 0"
               animation="property: rotation; to: 0 360 0; loop: true; dur: 5000">
     </a-entity>
-
     <a-entity gltf-model="https://cdn.jsdelivr.net/gh/saracen7mi/pravoslavnacrkva@main/grbdrzave3d.glb"
               position="2 1 -5" scale="1 1 1" rotation="0 240 0"
               animation="property: rotation; to: 0 360 0; loop: true; dur: 5000">
     </a-entity>
 
-    <a-entity position="0 0.8 -4.9">
-      <a-text value="Crkva Svetog velikomučenika Dimitrija u Kladnju predstavlja značajan vjerski i kulturni spomenik. Sagrađena 1922. godine, obnovljena 1986. i i dalje okuplja vjernike." 
-              color="#FFFF00" width="5.5" wrap-count="50" align="center" scale="0.5 0.5 0.5"></a-text>
+    <!-- Dugmad za jezike -->
+    <a-entity id="eng-button" class="clickable" geometry="primitive: plane; height:0.5; width:1.5"
+              material="color:red" position="-2.5 2 -4.9"
+              text="value: ENG; color:white; align:center; width:3;">
+    </a-entity>
+    <a-entity id="deu-button" class="clickable" geometry="primitive: plane; height:0.5; width:1.5"
+              material="color:yellow" position="-1 2 -4.9"
+              text="value: DEU; color:black; align:center; width:3;">
+    </a-entity>
+    <a-entity id="ita-button" class="clickable" geometry="primitive: plane; height:0.5; width:1.5"
+              material="color:blue" position="0.5 2 -4.9"
+              text="value: ITA; color:white; align:center; width:3;">
+    </a-entity>
+    <a-entity id="tur-button" class="clickable" geometry="primitive: plane; height:0.5; width:1.5"
+              material="color:brown" position="2 2 -4.9"
+              text="value: TUR; color:white; align:center; width:3;">
     </a-entity>
 
+    <!-- Tekst -->
+    <a-entity position="0 0.8 -4.9">
+      <a-text value="Crkva Svetog velikomucenika Dimitrija u Kladnju predstavlja značajan vjerski, kulturno-istorijski spomenik pravoslavne zajednice ovog kraja. Sagrađena 1922. godine, crkva je brzo postala duhovni centar pravoslavnih vjernika. Tokom Drugog svjetskog rata teško je oštećena, a obnovljena je 1986. godine i danas pripada Eparhiji zvorničko-tuzlanskoj."
+              color="#FFFF00" width="5.5" wrap-count="50" align="center" scale="0.5 0.5 0.5">
+      </a-text>
+    </a-entity>
+
+    <!-- Kamera i kursor -->
     <a-entity camera look-controls position="0 0 0" fov="85">
       <a-cursor color="#FF0000" radius="0.05"></a-cursor>
     </a-entity>
   </a-scene>
 
-  <!-- Dugmad za jezike -->
-  <div class="language-controls">
-    <div id="btn-eng" class="lang-button">ENG</div>
-    <div id="btn-deu" class="lang-button">DEU</div>
-    <div id="btn-ita" class="lang-button">ITA</div>
-    <div id="btn-tur" class="lang-button">TUR</div>
-  </div>
-
   <script>
-    const audios = {
-      bosnian: document.getElementById('audio-bosnian'),
-      english: document.getElementById('audio-english'),
-      german: document.getElementById('audio-german'),
-      italian: document.getElementById('audio-italian'),
-      turkish: document.getElementById('audio-turkish')
-    };
+    document.addEventListener('DOMContentLoaded', () => {
+      const audios = {
+        bosnian: document.getElementById('audio-bosnian'),
+        english: document.getElementById('audio-english'),
+        german: document.getElementById('audio-german'),
+        italian: document.getElementById('audio-italian'),
+        turkish: document.getElementById('audio-turkish')
+      };
 
-    function stopAll() {
-      Object.values(audios).forEach(audio => {
-        audio.pause();
-        audio.currentTime = 0;
+      const stopAll = () => Object.values(audios).forEach(a => { a.pause(); a.currentTime = 0; });
+      const playAudio = audio => { stopAll(); audio.play().catch(e => console.warn(e)); };
+
+      const langButtons = {
+        'eng-button': audios.english,
+        'deu-button': audios.german,
+        'ita-button': audios.italian,
+        'tur-button': audios.turkish
+      };
+
+      Object.entries(langButtons).forEach(([id, audio]) => {
+        document.getElementById(id).addEventListener('click', () => playAudio(audio));
       });
-    }
 
-    function playAudio(lang) {
-      if (!(lang in audios)) return;
-      stopAll();
-      audios[lang].play().catch(e => console.warn('Playback error:', e));
-    }
-
-    function addButtonListener(id, lang) {
-      const btn = document.getElementById(id);
-      btn.addEventListener('click', () => playAudio(lang));
-      btn.addEventListener('touchstart', (e) => {
-        e.preventDefault();
-        playAudio(lang);
-      }, { passive: false });
-    }
-
-    addButtonListener('btn-eng', 'english');
-    addButtonListener('btn-deu', 'german');
-    addButtonListener('btn-ita', 'italian');
-    addButtonListener('btn-tur', 'turkish');
-
-    function tryPlayBosnian() {
-      playAudio('bosnian');
-      document.body.removeEventListener('click', tryPlayBosnian);
-      document.body.removeEventListener('touchstart', tryPlayBosnian);
-    }
-    document.body.addEventListener('click', tryPlayBosnian);
-    document.body.addEventListener('touchstart', tryPlayBosnian);
+      // Autoplay bosanski prvi dodir
+      const autoPlayBosnian = () => {
+        playAudio(audios.bosnian);
+        document.removeEventListener('click', autoPlayBosnian);
+        document.removeEventListener('touchstart', autoPlayBosnian);
+      };
+      document.addEventListener('click', autoPlayBosnian);
+      document.addEventListener('touchstart', autoPlayBosnian);
+    });
   </script>
-
 </body>
 </html>
 
