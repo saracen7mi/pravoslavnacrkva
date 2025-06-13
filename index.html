@@ -267,6 +267,9 @@
 
 
 
+
+
+
 <!DOCTYPE html>
 <html lang="bs">
 <head>
@@ -278,37 +281,51 @@
   <style>
     body {
       margin: 0;
-      overflow: hidden;
-      background-color: #004400;
-      color: yellow;
+      background-color: #002200;
       font-family: Arial, sans-serif;
+      color: white;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
     }
+
     a-scene {
-      width: 100vw;
-      height: 80vh;
-      display: block;
+      width: 100%;
+      height: 75vh;
+      border-bottom: 4px solid #004400;
     }
-    /* Dugmad za jezike */
+
+    .language-controls {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      background-color: #001100;
+      padding: 10px 0;
+      gap: 10px;
+    }
+
     .lang-button {
-      position: fixed;
-      top: 10px;
-      cursor: pointer;
       padding: 10px 15px;
       font-weight: bold;
       border-radius: 5px;
       user-select: none;
       color: white;
       font-size: 16px;
-      opacity: 0.9;
+      opacity: 0.95;
       transition: opacity 0.3s;
+      cursor: pointer;
+      border: none;
     }
+
     .lang-button:hover {
       opacity: 1;
     }
-    #btn-eng { background-color: red; left: 10px; }
-    #btn-deu { background-color: yellow; color: black; left: 90px; }
-    #btn-ita { background-color: blue; left: 180px; }
-    #btn-tur { background-color: brown; left: 270px; }
+
+    #btn-eng { background-color: red; }
+    #btn-deu { background-color: yellow; color: black; }
+    #btn-ita { background-color: blue; }
+    #btn-tur { background-color: brown; }
   </style>
 </head>
 <body>
@@ -320,12 +337,6 @@
   <audio id="audio-italian" preload="auto" src="https://raw.githubusercontent.com/saracen7mi/pravoslavnacrkva/main/pravoslavnacrkvaitalijanska.mp3"></audio>
   <audio id="audio-turkish" preload="auto" src="https://raw.githubusercontent.com/saracen7mi/pravoslavnacrkva/main/pravoslavnacrkvaturski.mp3"></audio>
 
-  <!-- Dugmad za odabir jezika -->
-  <div id="btn-eng" class="lang-button">ENG</div>
-  <div id="btn-deu" class="lang-button">DEU</div>
-  <div id="btn-ita" class="lang-button">ITA</div>
-  <div id="btn-tur" class="lang-button">TUR</div>
-
   <!-- A-Frame scena -->
   <a-scene embedded arjs="sourceType: webcam; trackingMethod: best; debugUIEnabled: false;">
     <a-plane color="#008000" height="3.5" width="6.5" position="0 0.5 -5" opacity="0.9"></a-plane>
@@ -334,13 +345,14 @@
               position="-2 1 -5" scale="1 1 1" rotation="0 240 0"
               animation="property: rotation; to: 0 360 0; loop: true; dur: 5000">
     </a-entity>
+
     <a-entity gltf-model="https://cdn.jsdelivr.net/gh/saracen7mi/pravoslavnacrkva@main/grbdrzave3d.glb"
               position="2 1 -5" scale="1 1 1" rotation="0 240 0"
               animation="property: rotation; to: 0 360 0; loop: true; dur: 5000">
     </a-entity>
 
     <a-entity position="0 0.8 -4.9">
-      <a-text value="Crkva Svetog velikomucenika Dimitrija u Kladnju predstavlja značajan vjerski, kulturno-istorijski spomenik pravoslavne zajednice ovog kraja. Sagrađena 1922. godine, crkva je brzo postala duhovni centar pravoslavnih vjernika u Kladnju i okolini. Za vrijeme Drugog svjetskog rata, 1943. godine, Kladanj je bio meta zračnog napada, crkva je bila teško oštećena i potpuno izgorjela. Crkva, koja dugo nije služila za bogosluženje, obnovljena je tek 1986. godine, a crkva je svečano otvorena i prešla na upravu Eparhije zvorničko-tuzlanske. Danas se u Vitaljskom okrugu nalazi crkva Svetog velikomučeniка Dimitrija, koja nastavlja da služi svojoj vjerskoj namjeni okupljajući pravoslavne vjernike i svjedočeći istorijsko i duhovno naslijeđe pravoslavne zajednice u Kladnju."
+      <a-text value="Crkva Svetog velikomučenika Dimitrija u Kladnju predstavlja značajan vjerski i kulturni spomenik. Sagrađena 1922. godine, obnovljena 1986. i i dalje okuplja vjernike." 
               color="#FFFF00" width="5.5" wrap-count="50" align="center" scale="0.5 0.5 0.5"></a-text>
     </a-entity>
 
@@ -349,8 +361,15 @@
     </a-entity>
   </a-scene>
 
+  <!-- Dugmad za jezike -->
+  <div class="language-controls">
+    <div id="btn-eng" class="lang-button">ENG</div>
+    <div id="btn-deu" class="lang-button">DEU</div>
+    <div id="btn-ita" class="lang-button">ITA</div>
+    <div id="btn-tur" class="lang-button">TUR</div>
+  </div>
+
   <script>
-    // Audio elementi
     const audios = {
       bosnian: document.getElementById('audio-bosnian'),
       english: document.getElementById('audio-english'),
@@ -359,7 +378,6 @@
       turkish: document.getElementById('audio-turkish')
     };
 
-    // Funkcija za zaustavljanje svih audio zapisa
     function stopAll() {
       Object.values(audios).forEach(audio => {
         audio.pause();
@@ -367,27 +385,19 @@
       });
     }
 
-    // Funkcija za reprodukciju određenog audio zapisa
     function playAudio(lang) {
-      if (!(lang in audios)) {
-        console.warn('Nepoznat jezik:', lang);
-        return;
-      }
+      if (!(lang in audios)) return;
       stopAll();
-      const audio = audios[lang];
-      audio.play().catch(e => {
-        console.warn('Problem sa reprodukcijom:', e);
-      });
+      audios[lang].play().catch(e => console.warn('Playback error:', e));
     }
 
-    // Dugmad i event listeneri - click i touch (radi na svim uređajima)
     function addButtonListener(id, lang) {
       const btn = document.getElementById(id);
       btn.addEventListener('click', () => playAudio(lang));
       btn.addEventListener('touchstart', (e) => {
-        e.preventDefault(); // spriječava dupli klik i scroll na mobilnim
+        e.preventDefault();
         playAudio(lang);
-      }, {passive: false});
+      }, { passive: false });
     }
 
     addButtonListener('btn-eng', 'english');
@@ -395,7 +405,6 @@
     addButtonListener('btn-ita', 'italian');
     addButtonListener('btn-tur', 'turkish');
 
-    // Autoplay bosanskog audio zapisa - tek nakon prvog dodira/klika na body
     function tryPlayBosnian() {
       playAudio('bosnian');
       document.body.removeEventListener('click', tryPlayBosnian);
@@ -404,10 +413,9 @@
     document.body.addEventListener('click', tryPlayBosnian);
     document.body.addEventListener('touchstart', tryPlayBosnian);
   </script>
+
 </body>
 </html>
-
-
 
 
 
